@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bom4e3bk5kf85"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_pdysx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgh5c"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_pdysx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sgh5c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(20, 20)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(0, 1, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
